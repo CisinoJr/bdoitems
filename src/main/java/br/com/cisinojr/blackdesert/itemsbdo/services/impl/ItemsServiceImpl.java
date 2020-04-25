@@ -3,7 +3,6 @@ package br.com.cisinojr.blackdesert.itemsbdo.services.impl;
 import br.com.cisinojr.blackdesert.itemsbdo.domain.Items;
 import br.com.cisinojr.blackdesert.itemsbdo.repository.ItemsRepository;
 import br.com.cisinojr.blackdesert.itemsbdo.services.ItemsService;
-import br.com.cisinojr.blackdesert.itemsbdo.services.dto.GenericResponseDTO;
 import br.com.cisinojr.blackdesert.itemsbdo.services.dto.ItemsDTO;
 import br.com.cisinojr.blackdesert.itemsbdo.services.mapper.ItemsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class ItemsServiceImpl implements ItemsService {
     }
 
     @Override
-    public GenericResponseDTO findByName(String name) throws ValidationException {
+    public ItemsDTO findByName(String name) throws ValidationException {
 
         if (name == null || name.isEmpty()) {
             throw new ValidationException("Name must be informed.");
@@ -33,7 +32,7 @@ public class ItemsServiceImpl implements ItemsService {
         Items items = itemsRepository.findByNameContainingIgnoreCase(name);
         ItemsDTO itemsDTO = itemsMapper.toDto(items);
 
-        return new GenericResponseDTO(200, "foda-se", itemsDTO);
+        return itemsDTO;
     }
 
 }

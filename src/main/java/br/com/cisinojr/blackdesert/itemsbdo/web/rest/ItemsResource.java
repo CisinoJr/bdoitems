@@ -1,7 +1,7 @@
 package br.com.cisinojr.blackdesert.itemsbdo.web.rest;
 
 import br.com.cisinojr.blackdesert.itemsbdo.services.ItemsService;
-import br.com.cisinojr.blackdesert.itemsbdo.services.dto.GenericResponseDTO;
+import br.com.cisinojr.blackdesert.itemsbdo.services.dto.ItemsDTO;
 import com.codahale.metrics.annotation.Timed;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +21,8 @@ public class ItemsResource {
 
     @GetMapping
     @Timed
-    public ResponseEntity<GenericResponseDTO> getItemByName(@RequestParam("name") String name) {
-        GenericResponseDTO response = itemsService.findByName(name);
+    public ResponseEntity<ItemsDTO> getItemByName(@RequestParam("name") String name) {
+        ItemsDTO response = itemsService.findByName(name);
         return ResponseEntity.ok().body(response);
     }
 
